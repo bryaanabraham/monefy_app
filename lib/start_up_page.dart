@@ -5,32 +5,91 @@ class StartUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: PageView(
-              controller: _pageController,
-              children: const [
-                PageContent(
-                  imagePath: "assets/Images/StartUp1.jpeg",
-                  title: "Welcome Back",
-                  font_size: 20,
-                ),
-                PageContent(
-                  imagePath: "assets/Images/StartUp2.jpeg",
-                  title: "Log in for an organized workplace finance",
-                  font_size: 18,
-                ),
-                PageContent(
-                  imagePath: "assets/Images/StartUp3.jpeg",
-                  title: "Create an account and support us",
-                  font_size: 18,
-                ),
-              ],
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Expanded(
+              child: PageView(
+                controller: _pageController,
+                children: const [
+                  PageContent(
+                    imagePath: "assets/Images/StartUp1.jpeg",
+                    title: "Welcome Back",
+                    font_size: 20,
+                  ),
+                  PageContent(
+                    imagePath: "assets/Images/StartUp2.jpeg",
+                    title: "Log in for an organized workplace finance",
+                    font_size: 18,
+                  ),
+                  PageContent(
+                    imagePath: "assets/Images/StartUp3.jpeg",
+                    title: "Create an account and support us",
+                    font_size: 18,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 2,
+                    height: 60,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50)),
+                        elevation: 1,
+                        child: const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            "Log in",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 2,
+                    height: 60,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        color: const Color.fromARGB(255, 0, 0, 0),
+                        elevation: 2,
+                        child: const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            "Register",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -54,9 +113,8 @@ class PageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 12, right: 12, top: 30, bottom: 12),
+      padding: const EdgeInsets.only(left: 12, right: 12, top: 20, bottom: 12),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
             child: ClipRRect(
@@ -77,53 +135,7 @@ class PageContent extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 150,
-                  height: 60,
-                  child: Card(
-                    elevation: 1,
-                    child: Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Text(
-                        "Log in",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 0, 0, 0),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 150,
-                  height: 60,
-                  child: Card(
-                    color: Color.fromARGB(255, 0, 0, 0),
-                    elevation: 1,
-                    child: Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Text(
-                        "Register",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              textAlign: TextAlign.left
             ),
           ),
         ],
