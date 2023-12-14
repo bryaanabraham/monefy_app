@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 
-class StartUpPage extends StatelessWidget {
+class StartUpPage extends StatefulWidget {
+  @override
+  _StartUpPageState createState() => _StartUpPageState();
+}
+
+class _StartUpPageState extends State<StartUpPage> {
   final PageController _pageController = PageController();
+  double _currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -12,26 +19,47 @@ class StartUpPage extends StatelessWidget {
             Expanded(
               child: PageView(
                 controller: _pageController,
+                onPageChanged: (int page) {
+                  setState(() {
+                    _currentPage = page.toDouble();
+                  });
+                },
                 children: const [
                   PageContent(
                     imagePath: "assets/Images/StartUp1.jpeg",
                     title: "Welcome Back",
-                    font_size: 20,
+                    font_size: 32,
                   ),
                   PageContent(
                     imagePath: "assets/Images/StartUp2.jpeg",
                     title: "Log in for an organized workplace finance",
-                    font_size: 18,
+                    font_size: 26,
                   ),
                   PageContent(
                     imagePath: "assets/Images/StartUp3.jpeg",
                     title: "Create an account and support us",
-                    font_size: 18,
+                    font_size: 26,
                   ),
                 ],
               ),
             ),
+            DotsIndicator(
+              dotsCount: 3, // Number of dots
+              position: _currentPage,
+              decorator: DotsDecorator(
+                size: const Size.square(9.0),
+                activeSize: const Size(16.0, 9.0),
+                activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                activeColor: Colors.black
+              ),
+            ),
             Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Row(
+                children: [
+                  Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: Row(
                 children: [
@@ -89,6 +117,9 @@ class StartUpPage extends StatelessWidget {
               ),
             ),
           ],
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -96,16 +127,15 @@ class StartUpPage extends StatelessWidget {
 }
 
 
+
 class PageContent extends StatelessWidget {
   final String imagePath;
   final String title;
-  // ignore: non_constant_identifier_names
   final double font_size;
 
   const PageContent({
     required this.imagePath,
     required this.title,
-    // ignore: non_constant_identifier_names
     required this.font_size,
     Key? key,
   }) : super(key: key);
@@ -115,6 +145,7 @@ class PageContent extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 12, right: 12, top: 20, bottom: 12),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: ClipRRect(
@@ -128,14 +159,17 @@ class PageContent extends StatelessWidget {
           const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: font_size,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: font_size,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+                textAlign: TextAlign.left, // Align text to the left
               ),
-              textAlign: TextAlign.left
             ),
           ),
         ],
