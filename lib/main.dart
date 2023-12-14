@@ -11,7 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Monefy',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(useMaterial3: true),
       home: StartUpPage(),
     );
   }

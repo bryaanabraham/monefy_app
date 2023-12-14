@@ -28,7 +28,7 @@ class _StartUpPageState extends State<StartUpPage> {
                   PageContent(
                     imagePath: "assets/Images/StartUp1.jpeg",
                     title: "Welcome Back",
-                    font_size: 32,
+                    font_size: 34,
                   ),
                   PageContent(
                     imagePath: "assets/Images/StartUp2.jpeg",
