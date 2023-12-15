@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:monefy_app/Login/login_screen.dart';
 
 class StartUpPage extends StatefulWidget {
   @override
@@ -68,10 +69,18 @@ class _StartUpPageState extends State<StartUpPage> {
                     height: 60,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: Card(
+                      child: MaterialButton(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50)),
+                        color: Color.fromARGB(201, 255, 255, 255),
                         elevation: 1,
+                        onPressed: () { 
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const LoginScreen()));
+                         },
                         child: const Padding(
                           padding: EdgeInsets.all(16.0),
                           child: Text(
@@ -92,12 +101,19 @@ class _StartUpPageState extends State<StartUpPage> {
                     height: 60,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: Card(
+                      child: MaterialButton(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
                         color: const Color.fromARGB(255, 0, 0, 0),
                         elevation: 2,
+                        onPressed: () { 
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const LoginScreen()));
+                         },
                         child: const Padding(
                           padding: EdgeInsets.all(16.0),
                           child: Text(
