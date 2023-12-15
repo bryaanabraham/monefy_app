@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:monefy_app/workplace.dart';
+import 'package:monefy_app/Workplaces/add_workplace.dart';
+// import 'package:monefy_app/workplace.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -38,7 +39,7 @@ class HomePage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const HomePage()));
+                            builder: (context) => const AddWorkplace()));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
                       height: 86,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(172, 72, 226, 229),
+                        color: const Color.fromARGB(172, 72, 226, 229),
                           borderRadius: BorderRadius.circular(20)),
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.start,

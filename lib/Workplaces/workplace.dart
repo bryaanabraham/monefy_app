@@ -43,7 +43,7 @@ class Workplaces extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  workplace;
+                  '{workplace}',
                   style: TextStyle(
                       fontSize: 26,
                       fontWeight: FontWeight.w700),
