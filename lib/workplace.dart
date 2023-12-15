@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monefy_app/home_page.dart';
 
 class Workplaces extends StatelessWidget {
   final IconData address;
@@ -54,6 +55,6 @@ class Workplaces extends StatelessWidget {
           ),
         ),
       ),
-    ),
+    );
   }
 }
