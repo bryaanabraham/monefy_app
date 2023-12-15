@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monefy_app/Login/start_up_page.dart';
+import 'package:monefy_app/start_up_page.dart';
 
 void main(){
   runApp(const MyApp());

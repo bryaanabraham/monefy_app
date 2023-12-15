@@ -72,7 +72,7 @@ class _StartUpPageState extends State<StartUpPage> {
                       child: MaterialButton(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50)),
-                        color: Color.fromARGB(201, 255, 255, 255),
+                        color: const Color.fromARGB(201, 255, 255, 255),
                         elevation: 1,
                         onPressed: () { 
                           Navigator.push(

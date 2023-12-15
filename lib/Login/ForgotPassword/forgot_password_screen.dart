@@ -97,7 +97,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                       child: const Padding(
                         padding: EdgeInsets.all(15.0),
                         child: Text(
-                          "Send Code",
+                          "Send Email",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,

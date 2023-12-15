@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monefy_app/Login/ForgotPassword/forgot_password_screen.dart';
-import 'package:monefy_app/Login/start_up_page.dart';
+import 'package:monefy_app/home_page.dart';
+import 'package:monefy_app/start_up_page.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -78,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: TextFormField(
                       decoration: const InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Enter your email',
+                        hintText: 'Enter your Email',
                         hintStyle: TextStyle(
                           color: Color(0xFF8391A1),
                         ),
@@ -172,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => StartUpPage(),),);
+                                  builder: (context) => const HomePage(),),);
                         },
                         child: const Padding(
                           padding: EdgeInsets.all(15.0),
@@ -236,7 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: Image.asset(
-                            'assets/images/facebook.jpeg',
+                            'assets/Images/facebook.jpeg',
                             height: 32,
                           ),
                         ),
@@ -272,7 +273,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: Image.asset(
-                            'assets/images/apple.jpeg',
+                            'assets/Images/apple.jpeg',
                             height: 32,
                           ),
                         ),
