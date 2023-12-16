@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:monefy_app/Workplaces/workplace.dart';
 import 'package:monefy_app/home_page.dart';
 
 class AddWorkplace extends StatefulWidget {
@@ -10,14 +10,37 @@ class AddWorkplace extends StatefulWidget {
 }
 
 class _AddWorkplace extends State<AddWorkplace> {
-  late IconData address;
-  late String workplace;
-  late String contact;
+  late TextEditingController workplaceController;
+  late TextEditingController addressController;
+  late TextEditingController contactController;
 
   bool _isExpandeIntro = false;
   final String HelpText = 'Need Help?';
   final String HelpExpanded =
       "Incorporate the specified details according to the given instructions\n\nThe provided name is featured on the home screen.";
+
+  String workplace = '';
+  String address = '';
+  String contact = '';
+
+  List<Widget> dynamicWidgets = [];
+
+  @override
+  void initState() {
+    super.initState();
+    workplaceController = TextEditingController();
+    addressController = TextEditingController();
+    contactController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    workplaceController.dispose();
+    addressController.dispose();
+    contactController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +86,7 @@ class _AddWorkplace extends State<AddWorkplace> {
                   color: const Color.fromARGB(255, 243, 241, 241),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10.0),
-                    child: TextFormField(
+                    child: TextFormField(controller: workplaceController,
                       decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Enter here',
@@ -96,7 +119,7 @@ class _AddWorkplace extends State<AddWorkplace> {
                   color: const Color.fromARGB(255, 243, 241, 241),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10.0),
-                    child: TextFormField(
+                    child: TextFormField(controller: addressController,
                       decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Enter here',
@@ -114,7 +137,7 @@ class _AddWorkplace extends State<AddWorkplace> {
                 child: Container(
                   alignment: Alignment.topLeft,
                   child: const Text(
-                    'Conatact Information: ',
+                    'Contact Information: ',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                     maxLines: 5,
                   ),
@@ -130,10 +153,10 @@ class _AddWorkplace extends State<AddWorkplace> {
                   color: const Color.fromARGB(255, 243, 241, 241),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10.0),
-                    child: TextFormField(
+                    child: TextFormField(controller: contactController,
                       decoration: const InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Phone/Email',
+                        hintText: 'Enter here',
                         hintStyle: TextStyle(
                           color: Color.fromARGB(255, 99, 99, 99),
                         ),
@@ -144,17 +167,28 @@ class _AddWorkplace extends State<AddWorkplace> {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  // _output = await _calculator.calculateOutput(
-                  //   _panelPower,
-                  //   _solarHoursPerDay,
-                  //   _environmentalFactor,
-                  // );
+                  workplace = workplaceController.text;
+                  address = addressController.text;
+                  contact = contactController.text;
+
+                  print('Workplace: $workplace');
+                  print('Address: $address');
+                  print('Contact: $contact');
 
                   setState(() {
+                    dynamicWidgets.add(
+                      Workplaces(
+                        workplace: workplace,
+                      ),
+                    );
+
+                    // If you want to add these widgets to the home page, you can pass them as parameters
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const HomePage(),
+                        builder: (context) => HomePage(
+                          dynamicWidgets: dynamicWidgets,
+                        ),
                       ),
                     );
                   });

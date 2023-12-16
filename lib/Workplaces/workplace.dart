@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:monefy_app/home_page.dart';
 
 class Workplaces extends StatelessWidget {
-  final IconData address;
   final String workplace;
-  final String contact;
-  const Workplaces(
-      {super.key,
-      required this.address,
-      required this.workplace,
-      required this.contact});
+
+  const Workplaces({
+    Key? key,
+    required this.workplace,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +17,11 @@ class Workplaces extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const HomePage()));
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomePage(dynamicWidgets: []),
+            ),
+          );
         },
         child: Padding(
           padding: const EdgeInsets.all(12.0),
@@ -30,12 +30,13 @@ class Workplaces extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
               color: const Color.fromRGBO(254, 230, 78, 1),
-                borderRadius: BorderRadius.circular(20)),
-            child: const Row(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(20.0),
                   child: Icon(
                     Icons.health_and_safety,
@@ -43,13 +44,13 @@ class Workplaces extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '{workplace}',
-                  style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.w700),
+                  workplace,
+                  style: const TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.w700,
+                  ),
                   overflow: TextOverflow.ellipsis,
                 ),
-                
               ],
             ),
           ),
