@@ -166,32 +166,23 @@ class _AddWorkplace extends State<AddWorkplace> {
                 ),
               ),
               ElevatedButton(
-                onPressed: () async {
+                onPressed: () {
                   workplace = workplaceController.text;
                   address = addressController.text;
                   contact = contactController.text;
-
-                  print('Workplace: $workplace');
-                  print('Address: $address');
-                  print('Contact: $contact');
-
-                  setState(() {
-                    dynamicWidgets.add(
-                      Workplaces(
-                        workplace: workplace,
-                      ),
-                    );
-
-                    // If you want to add these widgets to the home page, you can pass them as parameters
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomePage(
-                          dynamicWidgets: dynamicWidgets,
+                  
+                  Workplaces newWorkplace = Workplaces(
+                    workplace: workplace,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Workplaces(workplace: workplace, onPressed: () {  },),
                         ),
-                      ),
-                    );
-                  });
+                      );
+                    },
+                  );
+                  Navigator.pop(context, newWorkplace);
                 },
                 child: const Text(
                   'Update',

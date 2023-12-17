@@ -173,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HomePage(dynamicWidgets: [],),),);
+                                builder: (context) => const HomePage(),),);
                       },
                       child: const Padding(
                         padding: EdgeInsets.all(15.0),

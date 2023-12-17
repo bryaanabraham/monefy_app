@@ -1,25 +1,44 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:monefy_app/home_page.dart';
+
+Color getRandomColor() {
+  Random random = Random();
+  int red = random.nextInt(256); // 0 to 255
+  int green = random.nextInt(256); // 0 to 255
+  int blue = random.nextInt(256); // 0 to 255
+
+  // Ensure the color is bright by adjusting the components
+  red = (red + 200) % 256;
+  green = (green + 200) % 256;
+  blue = (blue + 200) % 256;
+
+  return Color.fromARGB(255, red, green, blue);
+}
 
 class Workplaces extends StatelessWidget {
   final String workplace;
 
   const Workplaces({
     Key? key,
-    required this.workplace,
-  }) : super(key: key);
+    required this.workplace, required Null Function() onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    return _buildWorkplaceWidget(context);
+  }
+
+  Widget _buildWorkplaceWidget(BuildContext context) {
     return SizedBox(
       height: 100,
       width: double.infinity,
       child: GestureDetector(
         onTap: () {
+          // Navigate to the HomePage with an empty dynamicWidgets list
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const HomePage(dynamicWidgets: []),
+              builder: (context) => const HomePage(),
             ),
           );
         },
@@ -29,7 +48,7 @@ class Workplaces extends StatelessWidget {
             height: 86,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: const Color.fromRGBO(254, 230, 78, 1),
+              color:getRandomColor(),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(

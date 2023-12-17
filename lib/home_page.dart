@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:monefy_app/Workplaces/add_workplace.dart';
 
-class HomePage extends StatelessWidget {
-  final List<Widget> dynamicWidgets;
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
-  const HomePage({Key? key, required this.dynamicWidgets}) : super(key: key);
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<Widget> dynamicWidgets = [];
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+      ),
       body: ListView(
         children: [
           Column(
@@ -36,46 +43,45 @@ class HomePage extends StatelessWidget {
               ),
               Column(
                 children: [
-                  ...dynamicWidgets, // Display the list of dynamic widgets
-                  SizedBox(
-                    height: 100,
-                    width: double.infinity,
-                    child: GestureDetector(
-                      onTap: () {
+                  ...dynamicWidgets,
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(172, 72, 226, 229), ),
+                      onPressed: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const AddWorkplace()));
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Container(
-                          height: 86,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              color: const Color.fromARGB(172, 72, 226, 229),
-                              borderRadius: BorderRadius.circular(20)),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(20.0),
-                                child: Icon(
-                                  Icons.add,
-                                  size: 35,
-                                ),
-                              ),
-                              Text(
-                                'Add a workplace',
-                                style: TextStyle(
-                                    fontSize: 26, fontWeight: FontWeight.w700),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ],
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AddWorkplace(),
+                          ),
+                        ).then((newWorkplace) {
+                          if (newWorkplace != null) {
+                            setState(() {
+                              dynamicWidgets.add(newWorkplace);
+                            });
+                          }
+                        });
+                      },  child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: Icon(
+                            Icons.add,
+                            size: 35,
+                            color: Colors.black,
                           ),
                         ),
-                      ),
+                        Text(
+                          'Add a workplace',
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.w700, color: Colors.black),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
                     ),
                   ),
                 ],
