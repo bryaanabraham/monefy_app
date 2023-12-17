@@ -7,8 +7,6 @@ Color getRandomColor() {
   int red = random.nextInt(256); // 0 to 255
   int green = random.nextInt(256); // 0 to 255
   int blue = random.nextInt(256); // 0 to 255
-
-  // Ensure the color is bright by adjusting the components
   red = (red + 200) % 256;
   green = (green + 200) % 256;
   blue = (blue + 200) % 256;
