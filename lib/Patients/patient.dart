@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:monefy_app/home_page.dart';
-import 'package:monefy_app/Patients/patient.dart';
+import 'package:monefy_app/Patients/add_patients.dart';
 
 Color getRandomColor() {
   Random random = Random();
@@ -15,12 +14,7 @@ Color getRandomColor() {
   return Color.fromARGB(255, red, green, blue);
 }
 
-class Workplaces extends StatelessWidget {
-  final String workplace;
-
-  const Workplaces({
-    Key? key,
-    required this.workplace, required Null Function() onPressed}) : super(key: key);
+class PatientPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +31,7 @@ class Workplaces extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => PatientPage(),
+              builder: (context) => AddPatient(),
             ),
           );
         },
@@ -50,25 +44,25 @@ class Workplaces extends StatelessWidget {
               color:getRandomColor(),
               borderRadius: BorderRadius.circular(20),
             ),
-            child: Row(
+            child:const  Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(20.0),
                   child: Icon(
                     Icons.health_and_safety,
                     size: 35,
                   ),
                 ),
-                Text(
-                  workplace,
-                  style: const TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.w700,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
+                // Text(
+                //   workplace,
+                //   style: const TextStyle(
+                //     fontSize: 26,
+                //     fontWeight: FontWeight.w700,
+                //   ),
+                //   overflow: TextOverflow.ellipsis,
+                // ),
               ],
             ),
           ),
