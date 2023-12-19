@@ -3,15 +3,17 @@ import 'package:monefy_app/Patients/patient.dart';
 
 class AddPatient extends StatefulWidget {
   const AddPatient({Key? key}) : super(key: key);
-
+  
   @override
   _AddPatient createState() => _AddPatient();
 }
 
 class _AddPatient extends State<AddPatient> {
   late TextEditingController workplaceController;
-  late TextEditingController addressController;
   late TextEditingController contactController;
+  late TextEditingController ailmentController;
+  late TextEditingController treatmentController;
+  late TextEditingController paymentController;
 
   bool _isExpandeIntro = false;
   final String HelpText = 'Need Help?';
@@ -19,24 +21,29 @@ class _AddPatient extends State<AddPatient> {
       "Incorporate the specified details according to the given instructions\n\nThe provided name is featured on the home screen.";
 
   String workplace = '';
-  String address = '';
   String contact = '';
+  String ailment = ' ';
+  String treatment = ' ';
+  String payment = ' ';
 
-  List<Widget> dynamicWidgets = [];
 
   @override
   void initState() {
     super.initState();
     workplaceController = TextEditingController();
-    addressController = TextEditingController();
     contactController = TextEditingController();
+    ailmentController = TextEditingController();
+    treatmentController = TextEditingController();
+    paymentController = TextEditingController();
   }
 
   @override
   void dispose() {
     workplaceController.dispose();
-    addressController.dispose();
     contactController.dispose();
+    ailmentController.dispose();
+    treatmentController.dispose();
+    paymentController.dispose();
     super.dispose();
   }
 
@@ -44,7 +51,7 @@ class _AddPatient extends State<AddPatient> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 66, 227, 208),
+        backgroundColor: const Color.fromARGB(255, 227, 149, 66),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -70,7 +77,7 @@ class _AddPatient extends State<AddPatient> {
                 child: Container(
                   alignment: Alignment.topLeft,
                   child: const Text(
-                    'Name of workplace',
+                    'Patient name',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                 ),
@@ -103,42 +110,8 @@ class _AddPatient extends State<AddPatient> {
                 child: Container(
                   alignment: Alignment.topLeft,
                   child: const Text(
-                    'Address: ',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 5.0, right: 5, bottom: 16),
-                child: Card(
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  color: const Color.fromARGB(255, 243, 241, 241),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: TextFormField(controller: addressController,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Enter here',
-                        hintStyle: TextStyle(
-                          color: Color.fromARGB(255, 99, 99, 99),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 16, left: 16, right: 16, bottom: 8),
-                child: Container(
-                  alignment: Alignment.topLeft,
-                  child: const Text(
                     'Contact Information: ',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                    maxLines: 5,
                   ),
                 ),
               ),
@@ -164,24 +137,117 @@ class _AddPatient extends State<AddPatient> {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 16, left: 16, right: 16, bottom: 8),
+                child: Container(
+                  alignment: Alignment.topLeft,
+                  child: const Text(
+                    'Ailment: ',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                    maxLines: 5,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 5.0, right: 5, bottom: 16),
+                child: Card(
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  color: const Color.fromARGB(255, 243, 241, 241),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: TextFormField(controller: ailmentController,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Enter here',
+                        hintStyle: TextStyle(
+                          color: Color.fromARGB(255, 99, 99, 99),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 16, left: 16, right: 16, bottom: 8),
+                child: Container(
+                  alignment: Alignment.topLeft,
+                  child: const Text(
+                    'Treatment: ',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                    maxLines: 5,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 5.0, right: 5, bottom: 16),
+                child: Card(
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  color: const Color.fromARGB(255, 243, 241, 241),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: TextFormField(controller: treatmentController,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Enter here',
+                        hintStyle: TextStyle(
+                          color: Color.fromARGB(255, 99, 99, 99),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 16, left: 16, right: 16, bottom: 8),
+                child: Container(
+                  alignment: Alignment.topLeft,
+                  child: const Text(
+                    'Payment: ',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                    maxLines: 5,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 5.0, right: 5, bottom: 16),
+                child: Card(
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  color: const Color.fromARGB(255, 243, 241, 241),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: TextFormField(controller: paymentController,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Enter here',
+                        hintStyle: TextStyle(
+                          color: Color.fromARGB(255, 99, 99, 99),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               ElevatedButton(
                 onPressed: () {
                   workplace = workplaceController.text;
-                  address = addressController.text;
                   contact = contactController.text;
-                  
-                  PatientPage newWorkplace = PatientPage(
-                    // workplace: workplace,
-                    // onPressed: () {
-                    //   Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => Workplaces(workplace: workplace, onPressed: () {  },),
-                    //     ),
-                    //   );
-                    // },
-                  );
-                  Navigator.pop(context, newWorkplace);
+                  ailment = ailmentController.text;
+                  treatment = treatmentController.text;
+                  payment = paymentController.text;
+                  PatientPage newPatients = const PatientPage(workplace: 'Hospital', ailment: '', contact: '', treatment: '', payment: '',);
+                  Navigator.pop(context, newPatients);
                 },
                 child: const Text(
                   'Update',

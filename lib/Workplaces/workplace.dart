@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:monefy_app/home_page.dart';
 import 'package:monefy_app/Patients/patient.dart';
 
 Color getRandomColor() {
@@ -15,12 +14,27 @@ Color getRandomColor() {
   return Color.fromARGB(255, red, green, blue);
 }
 
-class Workplaces extends StatelessWidget {
+class AddWorkplaces extends StatefulWidget {
   final String workplace;
+  final String address;
+  final String contact;
 
-  const Workplaces({
+  final String helpText = 'Need Help?';
+  final String helpExpanded =
+      "Incorporate the specified details according to the given instructions\n\nThe provided name is featured on the home screen.";
+
+  const AddWorkplaces({
     Key? key,
-    required this.workplace, required Null Function() onPressed}) : super(key: key);
+    required this.workplace,
+    required this.contact, required Null Function() onPressed, required this.address,
+  }) : super(key: key);
+
+  @override
+  State<AddWorkplaces> createState() => _AddWorkplacesState();
+}
+
+class _AddWorkplacesState extends State<AddWorkplaces> {
+  bool _isExpandeIntro = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +47,10 @@ class Workplaces extends StatelessWidget {
       width: double.infinity,
       child: GestureDetector(
         onTap: () {
-          // Navigate to the HomePage with an empty dynamicWidgets list
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => PatientPage(),
+              builder: (context) => PatientPage(workplace: widget.workplace, ailment: '', contact: '', treatment: '', payment: '',),
             ),
           );
         },
@@ -47,7 +60,7 @@ class Workplaces extends StatelessWidget {
             height: 86,
             width: double.infinity,
             decoration: BoxDecoration(
-              color:getRandomColor(),
+              color: getRandomColor(),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
@@ -57,12 +70,12 @@ class Workplaces extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.all(20.0),
                   child: Icon(
-                    Icons.health_and_safety,
-                    size: 35,
+                    Icons.work,
+                    size: 25,
                   ),
                 ),
                 Text(
-                  workplace,
+                  widget.workplace,
                   style: const TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.w700,

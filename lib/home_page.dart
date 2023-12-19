@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monefy_app/Workplaces/add_workplace.dart';
+import 'package:monefy_app/Workplaces/add_workplaces.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const AddWorkplace(),
+                            builder: (context) => const Workplace(),
                           ),
                         ).then((newWorkplace) {
                           if (newWorkplace != null) {

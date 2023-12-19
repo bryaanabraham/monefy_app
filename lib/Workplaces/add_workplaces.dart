@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:monefy_app/Workplaces/workplace.dart';
 
-class AddWorkplace extends StatefulWidget {
-  const AddWorkplace({Key? key}) : super(key: key);
+class Workplace extends StatefulWidget {
+  const Workplace({Key? key}) : super(key: key);
 
   @override
-  _AddWorkplace createState() => _AddWorkplace();
+  _Workplace createState() => _Workplace();
 }
 
-class _AddWorkplace extends State<AddWorkplace> {
+class _Workplace extends State<Workplace> {
   late TextEditingController workplaceController;
   late TextEditingController addressController;
   late TextEditingController contactController;
 
   bool _isExpandeIntro = false;
+
   final String HelpText = 'Need Help?';
   final String HelpExpanded =
       "Incorporate the specified details according to the given instructions\n\nThe provided name is featured on the home screen.";
@@ -21,8 +22,6 @@ class _AddWorkplace extends State<AddWorkplace> {
   String workplace = '';
   String address = '';
   String contact = '';
-
-  List<Widget> dynamicWidgets = [];
 
   @override
   void initState() {
@@ -170,16 +169,16 @@ class _AddWorkplace extends State<AddWorkplace> {
                   address = addressController.text;
                   contact = contactController.text;
                   
-                  Workplaces newWorkplace = Workplaces(
+                  AddWorkplaces newWorkplace = AddWorkplaces(
                     workplace: workplace,
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Workplaces(workplace: workplace, onPressed: () {  },),
+                          builder: (context) => AddWorkplaces(workplace: workplace, onPressed: () {  }, address: address, contact: contact,),
                         ),
                       );
-                    },
+                    }, address: address, contact: contact,
                   );
                   Navigator.pop(context, newWorkplace);
                 },
@@ -212,13 +211,13 @@ class _AddWorkplace extends State<AddWorkplace> {
                 ),
               ),
               if (_isExpandeIntro)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Text(
-                    HelpExpanded,
-                    style: const TextStyle(fontSize: 18),
-                  ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Text(
+                  HelpExpanded,
+                  style: const TextStyle(fontSize: 18),
                 ),
+              ),
             ],
           ),
         ),
