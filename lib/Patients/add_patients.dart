@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monefy_app/Patients/patient.dart';
+import 'package:monefy_app/Patients/pass_patient_info.dart';
 
 class AddPatient extends StatefulWidget {
   const AddPatient({Key? key}) : super(key: key);
@@ -9,7 +9,7 @@ class AddPatient extends StatefulWidget {
 }
 
 class _AddPatient extends State<AddPatient> {
-  late TextEditingController workplaceController;
+  late TextEditingController nameController;
   late TextEditingController contactController;
   late TextEditingController ailmentController;
   late TextEditingController treatmentController;
@@ -20,7 +20,7 @@ class _AddPatient extends State<AddPatient> {
   final String HelpExpanded =
       "Incorporate the specified details according to the given instructions\n\nThe provided name is featured on the home screen.";
 
-  String workplace = '';
+  String name = '';
   String contact = '';
   String ailment = ' ';
   String treatment = ' ';
@@ -30,7 +30,7 @@ class _AddPatient extends State<AddPatient> {
   @override
   void initState() {
     super.initState();
-    workplaceController = TextEditingController();
+    nameController = TextEditingController();
     contactController = TextEditingController();
     ailmentController = TextEditingController();
     treatmentController = TextEditingController();
@@ -39,7 +39,7 @@ class _AddPatient extends State<AddPatient> {
 
   @override
   void dispose() {
-    workplaceController.dispose();
+    nameController.dispose();
     contactController.dispose();
     ailmentController.dispose();
     treatmentController.dispose();
@@ -92,7 +92,7 @@ class _AddPatient extends State<AddPatient> {
                   color: const Color.fromARGB(255, 243, 241, 241),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10.0),
-                    child: TextFormField(controller: workplaceController,
+                    child: TextFormField(controller: nameController,
                       decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Enter here',
@@ -241,13 +241,17 @@ class _AddPatient extends State<AddPatient> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  workplace = workplaceController.text;
+                  name = nameController.text;
                   contact = contactController.text;
                   ailment = ailmentController.text;
                   treatment = treatmentController.text;
                   payment = paymentController.text;
-                  PatientPage newPatients = const PatientPage(workplace: 'Hospital', ailment: '', contact: '', treatment: '', payment: '',);
+                  PassPatientInfo newPatients = PassPatientInfo(Name: name);
                   Navigator.pop(context, newPatients);
+                   MaterialPageRoute(
+                          builder: (context) => PassPatientInfo(Name: name),
+                        );
+                  
                 },
                 child: const Text(
                   'Update',

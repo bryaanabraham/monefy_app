@@ -1,5 +1,6 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
+import 'dart:math';
+
 import 'package:monefy_app/Patients/patient.dart';
 
 Color getRandomColor() {
@@ -14,32 +15,22 @@ Color getRandomColor() {
   return Color.fromARGB(255, red, green, blue);
 }
 
-class Workplaces extends StatefulWidget {
-  final String workplace;
-  final String address;
-  final String contact;
-  final String helpText = 'Need Help?';
-  final String helpExpanded =
-      "Incorporate the specified details according to the given instructions\n\nThe provided name is featured on the home screen.";
+class PassPatientInfo extends StatefulWidget {
+  final String Name;
 
-  const Workplaces({
-    Key? key,
-    required this.workplace,
-    required this.contact, required Null Function() onPressed, required this.address,
-  }) : super(key: key);
+  const PassPatientInfo({super.key, required this.Name});
 
   @override
-  State<Workplaces> createState() => _WorkplacesState();
+  State<PassPatientInfo> createState() => _PassPatientInfoState();
 }
 
-class _WorkplacesState extends State<Workplaces> {
-
+class _PassPatientInfoState extends State<PassPatientInfo> {
   @override
   Widget build(BuildContext context) {
-    return _buildWorkplaceWidget(context);
+    return _buildPassPatientWdiget(context);
   }
 
-  Widget _buildWorkplaceWidget(BuildContext context) {
+  Widget _buildPassPatientWdiget(BuildContext context){
     return SizedBox(
       height: 100,
       width: double.infinity,
@@ -48,7 +39,7 @@ class _WorkplacesState extends State<Workplaces> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => PatientPage(workplace: widget.workplace, ailment: '', contact: '', treatment: '', payment: '',),
+              builder: (context) => PatientPage(workplace: '', ailment: '', contact: '', treatment: '', payment: '',),
             ),
           );
         },
@@ -68,12 +59,12 @@ class _WorkplacesState extends State<Workplaces> {
                 const Padding(
                   padding: EdgeInsets.all(20.0),
                   child: Icon(
-                    Icons.work,
+                    Icons.person,
                     size: 25,
                   ),
                 ),
                 Text(
-                  widget.workplace,
+                  widget.Name,
                   style: const TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.w700,

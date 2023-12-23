@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:monefy_app/Workplaces/workplace.dart';
 
-class Workplace extends StatefulWidget {
-  const Workplace({Key? key}) : super(key: key);
+class AddWorkplace extends StatefulWidget {
+  const AddWorkplace({Key? key}) : super(key: key);
 
   @override
-  _Workplace createState() => _Workplace();
+  _AddWorkplace createState() => _AddWorkplace();
 }
 
-class _Workplace extends State<Workplace> {
+class _AddWorkplace extends State<AddWorkplace> {
   late TextEditingController workplaceController;
   late TextEditingController addressController;
   late TextEditingController contactController;
@@ -169,13 +169,13 @@ class _Workplace extends State<Workplace> {
                   address = addressController.text;
                   contact = contactController.text;
                   
-                  AddWorkplaces newWorkplace = AddWorkplaces(
+                  Workplaces newWorkplace = Workplaces(
                     workplace: workplace,
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AddWorkplaces(workplace: workplace, onPressed: () {  }, address: address, contact: contact,),
+                          builder: (context) => Workplaces(workplace: workplace, onPressed: () {}, address: address, contact: contact,),
                         ),
                       );
                     }, address: address, contact: contact,

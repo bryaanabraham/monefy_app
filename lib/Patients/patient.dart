@@ -14,7 +14,7 @@ Color getRandomColor() {
   return Color.fromARGB(255, red, green, blue);
 }
 
-class PatientPage extends StatelessWidget {
+class PatientPage extends StatefulWidget {
   final String workplace;
   final String ailment;
   final String contact;
@@ -25,6 +25,12 @@ class PatientPage extends StatelessWidget {
     required this.workplace, required this.ailment, required this.contact, required this.treatment, required this.payment,}) : super(key: key);
 
   @override
+  State<PatientPage> createState() => _PatientPageState();
+}
+
+class _PatientPageState extends State<PatientPage> {
+  List<Widget> dynamicWidgets = [];
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -34,73 +40,75 @@ class PatientPage extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: Text(workplace),
+        title: Text(widget.workplace),
       ),
-      body: _buildWorkplaceWidget(context),
+      body: _buildPatientWidget(context),
     );
   }
 
-  Widget _buildWorkplaceWidget(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 25, bottom: 10, top: 20),
-          child: Text(
-            'Select a Patient',
-            style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w400,
-                fontStyle: FontStyle.italic),
-            textAlign: TextAlign.left,
-          ),
-        ),
-        SizedBox(
-          height: 100,
-          width: double.infinity,
-          child: GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const AddPatient(),
-                ),
-              );
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Container(
-                height: 86,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color:const Color.fromARGB(255, 227, 149, 66),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                child: const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: Icon(
-                        Icons.add,
-                        size: 25,
-                      ),
-                    ),
-                    Text(
-                      "Add Patient",
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-              ),
+  Widget _buildPatientWidget(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(left: 25, bottom: 10, top: 20),
+            child: Text(
+              'Select a Patient',
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.italic),
+              textAlign: TextAlign.left,
             ),
           ),
-        ),
-      ],
+          Column(
+                  children: [
+                    ...dynamicWidgets,
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(255, 227, 149, 66),),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AddPatient(),
+                            ),
+                          ).then((newWorkplace) {
+                            if (newWorkplace != null) {
+                              setState(() {
+                                dynamicWidgets.add(newWorkplace);
+                              });
+                            }
+                          });
+                        },  child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(20.0),
+                            child: Icon(
+                              Icons.add,
+                              size: 35,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            'Add a Patient',
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.w700, color: Colors.black),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
     );
   }
 }

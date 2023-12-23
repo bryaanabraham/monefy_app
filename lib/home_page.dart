@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Workplace(),
+                            builder: (context) => const AddWorkplace(),
                           ),
                         ).then((newWorkplace) {
                           if (newWorkplace != null) {
