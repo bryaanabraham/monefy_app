@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 import 'package:monefy_app/Patients/patient.dart';
+import 'package:monefy_app/Patients/patient_info.dart';
 
 Color getRandomColor() {
   Random random = Random();
@@ -39,7 +40,7 @@ class _PassPatientInfoState extends State<PassPatientInfo> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => PatientPage(workplace: '', ailment: '', contact: '', treatment: '', payment: '',),
+              builder: (context) => const PateintInfo()
             ),
           );
         },
