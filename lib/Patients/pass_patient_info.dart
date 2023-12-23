@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-
-import 'package:monefy_app/Patients/patient.dart';
 import 'package:monefy_app/Patients/patient_info.dart';
 
 Color getRandomColor() {
-  Random random = Random();
-  int red = random.nextInt(256); // 0 to 255
-  int green = random.nextInt(256); // 0 to 255
-  int blue = random.nextInt(256); // 0 to 255
-  red = (red + 200) % 256;
-  green = (green + 200) % 256;
-  blue = (blue + 200) % 256;
+
+Random random = Random();
+
+  int red = random.nextInt(256);
+  int green = random.nextInt(256);
+  int blue = random.nextInt(256);
+
+  double brightness = (red * 0.299 + green * 0.587 + blue * 0.114) / 255;
+
+  if (brightness < 0.5) {
+    brightness = brightness + 0.5;
+  }
+  red = red.clamp(0, 255);
+  green = green.clamp(0, 255);
+  blue = blue.clamp(0, 255);
 
   return Color.fromARGB(255, red, green, blue);
 }
