@@ -46,7 +46,7 @@ class _PassPatientInfoState extends State<PassPatientInfo> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const PateintInfo()
+              builder: (context) => const PatientInfo()
             ),
           );
         },
